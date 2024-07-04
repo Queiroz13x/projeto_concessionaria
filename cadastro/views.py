@@ -1,8 +1,8 @@
 from django.shortcuts import render , redirect
 from cadastro.forms import ClienteForm, MarcaForm, ModeloForm
 
-from cadastro.models import Marca, Modelo
-from cadastro.models import Cliente
+from cadastro.models import Marca, Modelo, Cliente
+from django.contrib import messages
 
 # Create your views here.
 
@@ -42,7 +42,7 @@ def excluirMarca(request, id):
     try:
         marca.delete()
     except:
-        pass
+        messages.error (request, 'Não foi possível excluir devido a associação')
     return redirect('listar_marcas')
 
 def listarCliente(request):
